@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { InformationComponent } from './information/information.component';
@@ -13,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule,
     MatTableModule,
     MatIconModule,
@@ -30,6 +34,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatGridListModule,
     MatCardModule,
     MatSidenavModule,
+    MatSelectModule,
+    MatSlideToggleModule,
   ],
 })
 export class ComponentsModule {}

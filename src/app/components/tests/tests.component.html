@@ -1,4 +1,48 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>Drawer content</mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened>
+    <mat-form-field class="select-level" appearance="fill">
+      <div class="select-title">Elige el nivel</div>
+      <mat-label></mat-label>
+      <mat-select
+        class="select-list"
+        [disabled]="disableSelect.value"
+        [(value)]="selected"
+      >
+        <mat-option value="Nivel 1">Nivel 1</mat-option>
+        <mat-option value="Nivel 2" disabled
+          >Nivel 2 (Not Available)</mat-option
+        >
+        <mat-option value="Nivel 3" disabled
+          >Nivel 3 (Not Available)</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <br />
+    <mat-slide-toggle class="show-answer" [(ngModel)]="showAnswer"
+      >Show Answer</mat-slide-toggle
+    >
+  </mat-drawer>
+  <mat-drawer-content>
+    <h1 class="tests-title">Tests del {{ selected }}</h1>
+
+    <ol class="test-container">
+      <li class="tests" *ngFor="let item of tests">
+        <div class="question">{{ item.question }}</div>
+        <ul>
+          <li *ngFor="let option of item.options">
+            <div [ngClass]="{ red: showAnswer && option.isAnswer }">
+              {{ option.text }}
+            </div>
+          </li>
+        </ul>
+        <br />
+        <div class="explanation" *ngIf="showAnswer">
+          <div class="explanation-label">Explicación:</div>
+          {{ item.explanation }}
+        </div>
+        <hr />
+      </li>
+    </ol>
+  </mat-drawer-content>
 </mat-drawer-container>
