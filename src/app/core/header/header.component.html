@@ -1,24 +1,40 @@
 <mat-toolbar>
-    <mat-toolbar-row>
-        <div class="header_container">
-            <div class="header_title">              
-                <mat-icon>domain</mat-icon> Danger
-            </div>
+  <mat-toolbar-row>
+    <div class="header_container">
+      <div class="header_title">
+        <a [routerLink]="['/home']" routerLinkActive="active">
+          <mat-icon>domain</mat-icon>
+          Danger
+        </a>
+      </div>
 
-            <div class="header_separator"> | </div>
+      <mat-divider [vertical]="true"></mat-divider>
 
-            <div class="header_menu">
-                <div class="header_button">
-                    <a routerLink="" routerLinkActive="active">Información</a>
-                </div>
-                <div class="header_button">
-                    <a routerLink="/games" routerLinkActive="active">Puntuaciones</a>
-                </div>
-            </div>
-
-            <div class="header_login">
-                <mat-icon>account_circle</mat-icon> Sign in
-            </div>
+      <div class="header_menu">
+        <div class="header_button">
+          <a [routerLink]="['/information']" routerLinkActive="active"
+            >Información</a
+          >
         </div>
-    </mat-toolbar-row>
+
+        <mat-divider [vertical]="true"></mat-divider>
+
+        <div class="header_button">
+          <a [routerLink]="['/score']" routerLinkActive="active"
+            >Puntuaciones</a
+          >
+        </div>
+
+        <mat-divider [vertical]="true"></mat-divider>
+
+        <div class="header_button">
+          <a [routerLink]="['/tests']" routerLinkActive="active">Tests</a>
+        </div>
+      </div>
+
+      <div class="header_login">
+        <mat-icon>account_circle</mat-icon> Sign in
+      </div>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
