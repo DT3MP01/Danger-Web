@@ -1,33 +1,49 @@
 <div class="container">
-  <div class="homepage-title">Danger</div>
+  <div class="homepage-title">
+    <img src="/assets/danger-title.png" alt="This is a img tag" />
+  </div>
 
-  <mat-card class="information">
-    <mat-card-title>Actions Buttons</mat-card-title>
-    <mat-card-subtitle>Start</mat-card-subtitle>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+  <div class="clearfix"></div>
 
-  <br />
-  <br />
+  <div class="cards">
+    <mat-card class="information">
+      <mat-card-title>Información</mat-card-title>
+      <mat-card-subtitle
+        >&nbsp;&nbsp;Distintas fuentes de información sobre que hacer en caso de
+        incendio.
+      </mat-card-subtitle>
+      <mat-card-actions>
+        <a routerLink="/information" routerLinkActive="active"
+          ><button mat-raised-button>Abrir</button></a
+        >
+      </mat-card-actions>
+    </mat-card>
 
-  <mat-card class="scoreboard">
-    <mat-card-title>Actions Buttons</mat-card-title>
-    <mat-card-subtitle>Start</mat-card-subtitle>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card class="scoreboard">
+      <mat-card-title>Puntuaciones</mat-card-title>
+      <mat-card-subtitle
+        >&nbsp;&nbsp;Ver el historial del resultado del juego</mat-card-subtitle
+      >
+      <mat-card-actions>
+        <a routerLink="/score" routerLinkActive="active">
+          <button mat-raised-button>Abrir</button>
+        </a>
+      </mat-card-actions>
+    </mat-card>
 
-  <mat-card class="tests">
-    <mat-card-title>Actions Buttons</mat-card-title>
-    <mat-card-subtitle>Start</mat-card-subtitle>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card class="tests">
+      <mat-card-title>Tests</mat-card-title>
+      <mat-card-subtitle
+        >&nbsp;&nbsp;Repasos de las preguntas del juego y sus
+        explicaciones</mat-card-subtitle
+      >
+      <mat-card-actions>
+        <a routerLink="/tests" routerLinkActive="active">
+          <button mat-raised-button>Abrir</button>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+
+    <div class="clearfix"></div>
+  </div>
 </div>

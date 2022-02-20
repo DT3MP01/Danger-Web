@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 import { HomepageComponent } from './homepage/homepage.component';
 import { InformationComponent } from './information/information.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
@@ -19,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatTableModule,
     MatIconModule,
     MatButtonModule,

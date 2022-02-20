@@ -1,29 +1,67 @@
 .container {
   background-color: #f4f4f4;
-  padding: 0 20px;
-  // position: static;
+  padding: 50px 20px;
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0 auto;
-  position: relative;
+  min-height: 100vh;
 }
 
 .homepage-title {
-  height: 150px;
-  // margin: 50px;
+  height: 200px;
   color: black;
   font-size: 50px;
   text-align: center;
   font-weight: bold;
-  position: relative;
   line-height: 150px;
-}
-mat-card {
-  width: 80%;
-  margin: auto;
-  position: relative;
+  img {
+    height: 100%;
+  }
 }
 
+.cards {
+  height: auto;
+  padding: 20px;
+  height: 180px;
+}
+
+mat-card {
+  width: 25%;
+  height: 100%;
+  margin: 2.6%;
+  position: relative;
+  border-radius: 20px;
+  mat-card-title {
+    // background-color: #00bfff;
+    margin: 20px;
+    text-align: center;
+  }
+  mat-card-subtitle {
+    margin: 30px;
+  }
+  mat-card-actions {
+    right: 30px;
+    bottom: 30px;
+    position: absolute;
+  }
+  a {
+    text-decoration: none;
+    button {
+      background-color: #00bfff;
+      color: white;
+      text-align: center;
+    }
+  }
+}
+
+.information {
+  float: left;
+}
 .scoreboard {
-  width: 80%;
-  margin: auto;
+  float: left;
+}
+.tests {
+  float: left;
+}
+
+.clearfix {
+  clear: both;
 }
