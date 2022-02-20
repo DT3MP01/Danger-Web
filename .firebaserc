@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "danger-b0add": {
+      "hosting": {
+        "danger": [
+          "danger-b0add"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "danger-b0add"
+  }
+}
