@@ -6,7 +6,53 @@
   <div class="clearfix"></div>
 
   <div class="cards">
-    <mat-card class="information">
+    <mat-grid-list cols="3" rowHeight="300px">
+      <mat-grid-tile>
+        <mat-card class="information">
+          <mat-card-title>Información</mat-card-title>
+          <mat-card-subtitle
+            >&nbsp;&nbsp;Distintas fuentes de información sobre que hacer en
+            caso de incendio.
+          </mat-card-subtitle>
+          <mat-card-actions>
+            <a routerLink="/information" routerLinkActive="active"
+              ><button mat-raised-button>Abrir</button></a
+            >
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-card class="scoreboard">
+          <mat-card-title>Puntuaciones</mat-card-title>
+          <mat-card-subtitle
+            >&nbsp;&nbsp;Ver el historial del resultado del
+            juego</mat-card-subtitle
+          >
+          <mat-card-actions>
+            <a routerLink="/score" routerLinkActive="active">
+              <button mat-raised-button>Abrir</button>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-card class="tests">
+          <mat-card-title>Tests</mat-card-title>
+          <mat-card-subtitle
+            >&nbsp;&nbsp;Repasos de las preguntas del juego y sus
+            explicaciones</mat-card-subtitle
+          >
+          <mat-card-actions>
+            <a routerLink="/tests" routerLinkActive="active">
+              <button mat-raised-button>Abrir</button>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <!-- <mat-card class="information">
       <mat-card-title>Información</mat-card-title>
       <mat-card-subtitle
         >&nbsp;&nbsp;Distintas fuentes de información sobre que hacer en caso de
@@ -17,8 +63,8 @@
           ><button mat-raised-button>Abrir</button></a
         >
       </mat-card-actions>
-    </mat-card>
-
+    </mat-card> -->
+    <!-- 
     <mat-card class="scoreboard">
       <mat-card-title>Puntuaciones</mat-card-title>
       <mat-card-subtitle
@@ -42,7 +88,7 @@
           <button mat-raised-button>Abrir</button>
         </a>
       </mat-card-actions>
-    </mat-card>
+    </mat-card> -->
 
     <div class="clearfix"></div>
   </div>

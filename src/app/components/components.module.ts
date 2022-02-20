@@ -10,7 +10,9 @@ import { TestsComponent } from './tests/tests.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MatCardModule } from '@angular/material/card';
     MatTableModule,
     MatIconModule,
     MatButtonModule,
+    MatGridListModule,
     MatCardModule,
+    MatSidenavModule,
   ],
 })
 export class ComponentsModule {}
