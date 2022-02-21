@@ -1,29 +1,32 @@
 <div class="container">
-    <h1>Puntuaciones</h1>
+  <h1 class="page-title">Puntuaciones</h1>
 
-    <mat-table [dataSource]="dataSource">
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.playerName }} </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="username">
-            <mat-header-cell *matHeaderCellDef> Nombre  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.playerName}} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="scans">
+      <mat-header-cell *matHeaderCellDef> Nº Escaneos </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.scannedTimes }}
+      </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="scans">
-            <mat-header-cell *matHeaderCellDef> Nº Escaneos  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.scannedTimes}} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef> Tiempo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.time }} </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="time">
-            <mat-header-cell *matHeaderCellDef> Tiempo  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="meters">
+      <mat-header-cell *matHeaderCellDef> Metros </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.meters }} </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="meters">
-            <mat-header-cell *matHeaderCellDef> Metros  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.meters}} </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns; sticky: true"
+    ></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
 </div>
