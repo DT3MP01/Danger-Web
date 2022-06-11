@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-tests',
@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class TestsComponent implements OnInit {
   showAnswer = false;
   selected = 'Nivel 1';
-  disableSelect = new FormControl(false);
+  disableSelect = new UntypedFormControl(false);
 
   public tests: any = [
     {
