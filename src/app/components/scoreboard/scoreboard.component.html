@@ -1,4 +1,33 @@
 <div class="container">
+
+
+  <mat-card class="example-card">
+    <mat-card-header>
+        <mat-card-title>GeeksForGeeks</mat-card-title>
+        <mat-card-subtitle>
+            One stop solution for all CS Subjects
+        </mat-card-subtitle>
+    </mat-card-header>
+  
+    <mat-card-content>
+        <p>
+            With La casa
+        </p>
+    </mat-card-content>
+  
+    <mat-card-actions>
+        <button mat-button style=
+            "background-color:blue; color:white">
+            LIKE
+        </button>
+  
+        <button mat-button style=
+            "background-color:green; color:white">
+            SHARE
+        </button>
+    </mat-card-actions>
+  </mat-card>
+  
   <h1 class="page-title">Puntuaciones</h1>
 
   <mat-table [dataSource]="dataSource">
@@ -29,4 +58,8 @@
     ></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+  
+
+
 </div>
+

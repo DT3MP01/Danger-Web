@@ -25,16 +25,22 @@ export class ScoreService {
 
     const dbRef = ref(database);
 
-      get(child(dbRef, `Games/`)).then((snapshot) => {
+      get(child(dbRef, `User/`)).then((snapshot) => {
+        console.log(snapshot.key);
         this.games = new Array<game>();
-        if (snapshot.exists()) {
-          for(let i = 1; i <= snapshot.size; i++) {
-            this.games.push(snapshot.val()[i]);
-          }
+        
+        // if (snapshot.exists()) {
+        //   const gamedw = new game();
+        //   gamedw.id = 2;
+
+        //   snapshot.forEach(childSnapshot => {
+            
+            
+        //   });
           
-        } else {
-          console.log("No data available");
-        }
+        // } else {
+        //   console.log("No data available");
+        // }
       }).catch((error) => {
         console.error(error);
       });

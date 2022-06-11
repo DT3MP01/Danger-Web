@@ -22,7 +22,7 @@ export class ScoreboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-ngAfterContentChecked() {
+ngAfterContentInit() {
     this.ScoreService.getScoreboard().subscribe(
       games => this.dataSource.data = games
     );
