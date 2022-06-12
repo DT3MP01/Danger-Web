@@ -1,33 +1,44 @@
-<div class="container">
 
 
-  <mat-card class="example-card">
-    <mat-card-header>
-        <mat-card-title>GeeksForGeeks</mat-card-title>
-        <mat-card-subtitle>
-            One stop solution for all CS Subjects
-        </mat-card-subtitle>
-    </mat-card-header>
+ <div class="container">
+
   
-    <mat-card-content>
-        <p>
-            With La casa
-        </p>
-    </mat-card-content>
-  
-    <mat-card-actions>
-        <button mat-button style=
-            "background-color:blue; color:white">
-            LIKE
-        </button>
-  
-        <button mat-button style=
-            "background-color:green; color:white">
-            SHARE
-        </button>
-    </mat-card-actions>
-  </mat-card>
-  
+  <h1 class="page-title">Puntuaciones</h1>
+  <div class="content">
+
+    <div fxLayout="row wrap" fxLayoutGap="12px grid">
+      <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of [1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17]">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-header>
+            <mat-card-title>Mountains {{num}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image src="https://raw.githubusercontent.com/thisiszoaib/card-view-demo/master/src/assets/images/mountains.jpg">
+          <mat-card-content>
+            <p>
+              The Himalayas is a mountain range in Asia.
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+
+    </div> 
+
+  </div>
+</div>
+<mat-paginator [length]="100"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 25, 100]"
+aria-label="Select page">
+</mat-paginator>
+
+<!-- <div class="container">
+
+
   <h1 class="page-title">Puntuaciones</h1>
 
   <mat-table [dataSource]="dataSource">
@@ -61,5 +72,5 @@
   
 
 
-</div>
+</div> -->
 
