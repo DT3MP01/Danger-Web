@@ -41,18 +41,11 @@ ngAfterContentInit() {
   }
 
   onDowloadFile(name:string){
-
-    this.ScoreService.dowloadJson(name).subscribe(
-      data => this.downloadFile("data")
-    );
+    console.log("DOWLOADING....");
+    this.ScoreService.dowloadJson(name);
 
   }
-  downloadFile(data: string) {
-    const blob = new Blob([data], { type: 'text/plain;charset=utf-8' });
-    
-    saveAs(blob, "save-me.txt");
 
-  }
 
 //   openDialog(dataRoom:game): void {
 //     const dialogRef = this.dialog.open(DialogOverviewRoom, {

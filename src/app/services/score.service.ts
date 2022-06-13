@@ -63,7 +63,15 @@ export class ScoreService {
           
           if (snapshot.exists()) {
             this.json =JSON.stringify(snapshot.child(idRef).child("Data").toJSON());
-                   
+            const blob = new Blob([this.json], { type: 'text/plain' });
+
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = snapshot.child(idRef).child("RoomName").val() + ".dataRoom";
+            link.click();
+            link.remove();
+
+
           } else {
             console.log("No data available");
           }
