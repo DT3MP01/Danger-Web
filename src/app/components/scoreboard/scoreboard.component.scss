@@ -13,6 +13,10 @@
 }
 
 
+.pagination {
+  display: flex;
+  justify-content: center;
+}
 
 mat-table {
   margin: 50px;

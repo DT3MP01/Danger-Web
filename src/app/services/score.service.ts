@@ -13,7 +13,10 @@ import { gamesData } from '../shared/mock-games';
 export class ScoreService {
 
   games: game[] = new Array<game>();
-  newGame: game = new game();
+  json: string = "";
+  
+  
+  // newGame: game = new game();
 
   constructor() { }
 
@@ -25,25 +28,51 @@ export class ScoreService {
 
     const dbRef = ref(database);
 
-      get(child(dbRef, `User/`)).then((snapshot) => {
-        console.log(snapshot.key);
-        this.games = new Array<game>();
+      get(child(dbRef, `Games/`)).then((snapshot) => {
         
-        // if (snapshot.exists()) {
-        //   const gamedw = new game();
-        //   gamedw.id = 2;
+        if (snapshot.exists()) {
+        console.log(snapshot.size);
+        snapshot.forEach((childSnapshot) => {
+          const stats = childSnapshot.child("Data").child("statsRoom");
+          const gamedata = new game(childSnapshot.child("RoomName").val(),childSnapshot.key!,stats.child("windows").val(),childSnapshot.child("Data").child("image").val(), stats.child("meters").val(), stats.child("doors").val(), stats.child("extinguishers").val());
+          this.games.push(gamedata);
+          console.log(childSnapshot.child("Data").toJSON());
+        });
+        
+        } else {
+          console.log("No data available");
+        }
 
-        //   snapshot.forEach(childSnapshot => {
-            
-            
-        //   });
-          
-        // } else {
-        //   console.log("No data available");
-        // }
       }).catch((error) => {
         console.error(error);
       });
       return of(this.games);
     }
+
+    dowloadJson(idRef:string):Observable<string>  {
+
+      
+      const app = initializeApp(environment.firebaseConfig);
+  
+      const database = getDatabase(app);
+  
+      const dbRef = ref(database);
+     
+        get(child(dbRef, `Games/`)).then((snapshot) => {
+          
+          
+          if (snapshot.exists()) {
+            this.json =JSON.stringify(snapshot.child(idRef).child("Data").toJSON());
+                   
+          } else {
+            console.log("No data available");
+          }
+  
+        }).catch((error) => {
+          console.error(error);
+        });
+        return of(this.json);
+      }
+
+    
 }
