@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app";
+import { collection, DocumentReference, getDoc, getDocs, getFirestore } from "firebase/firestore";
 import { environment } from 'src/environments/environment';
-import { child, get, getDatabase, onValue, ref } from "firebase/database";
+import { getBytes ,getDownloadURL,getStorage,ref} from "firebase/storage";
+
+
 import { getAnalytics } from "firebase/analytics";
 import { game } from '../shared/game';
 import { Observable, of } from 'rxjs';
@@ -23,63 +26,53 @@ export class ScoreService {
   getScoreboard(): Observable<game[]> {
 
     const app = initializeApp(environment.firebaseConfig);
-
-    const database = getDatabase(app);
-
-    const dbRef = ref(database);
-
-      get(child(dbRef, `Games/`)).then((snapshot) => {
+    
+    const database = getFirestore(app);
+    const storage = getStorage(app);
+    
+     getDocs(collection(database, "GameInfo")).then((snapshot) => {
         
-        if (snapshot.exists()) {
-        console.log(snapshot.size);
-        snapshot.forEach((childSnapshot) => {
-          const stats = childSnapshot.child("Data").child("statsRoom");
-          const gamedata = new game(childSnapshot.child("RoomName").val(),childSnapshot.key!,stats.child("windows").val(),childSnapshot.child("Data").child("image").val(), stats.child("meters").val(), stats.child("doors").val(), stats.child("extinguishers").val());
-          this.games.push(gamedata);
-          console.log(childSnapshot.child("Data").toJSON());
+      snapshot.forEach((doc) => {
+        console.log( doc.data());
+        getDownloadURL(ref(storage,doc.data().Image)).then((url) => {
+        const docReference = doc.data();
+        console.log(url);
+        const data = new game(docReference.RoomName, docReference.PlayerName, docReference.Extinguishers, url, docReference.Meters, docReference.Doors, docReference.Windows,docReference.Reference);
+        this.games.push(data);
+      }).catch((error) => {
+          console.error(error);
         });
-        
-        } else {
-          console.log("No data available");
-        }
+      });
 
       }).catch((error) => {
         console.error(error);
       });
-      return of(this.games);
-    }
 
-    dowloadJson(idRef:string):Observable<string>  {
+    // getBytes(ref(storage, "/GameInfo-Data/NiLI3Bu3kcpuLmqKoZCe-Image")).then((arrayBuffer) => {
+    //     var b64 = Buffer.from(arrayBuffer).toString('base64');
+    //     console.log(b64);
+    //   }).catch((error) => {
+    //     console.error(error);
+    // });
+    return of(this.games);
+     }
+    
 
-      
+    dowloadJson(docRef:string,roomName:string)  {
+
       const app = initializeApp(environment.firebaseConfig);
-  
-      const database = getDatabase(app);
-  
-      const dbRef = ref(database);
-     
-        get(child(dbRef, `Games/`)).then((snapshot) => {
-          
-          
-          if (snapshot.exists()) {
-            this.json =JSON.stringify(snapshot.child(idRef).child("Data").toJSON());
-            const blob = new Blob([this.json], { type: 'text/plain' });
 
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = snapshot.child(idRef).child("RoomName").val() + ".dataRoom";
-            link.click();
-            link.remove();
+      const storage = getStorage(app);
 
-
-          } else {
-            console.log("No data available");
-          }
-  
-        }).catch((error) => {
+      getDownloadURL(ref(storage,docRef)).then((url) => {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = roomName;
+        link.click();
+        link.remove();
+      }).catch((error) => {
           console.error(error);
         });
-        return of(this.json);
       }
 
     

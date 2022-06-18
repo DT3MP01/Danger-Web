@@ -4,7 +4,7 @@ import { game } from '../../shared/game';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { ScoreService } from 'src/app/services/score.service';
 import { PageEvent } from '@angular/material/paginator';
-
+import { DocumentReference } from 'firebase/firestore';
 
 
 @Component({
@@ -29,48 +29,50 @@ export class ScoreboardComponent implements OnInit {
 
   // ,public dialog: MatDialog
 
-  constructor(private ScoreService: ScoreService) { }
+  constructor(private ScoreService: ScoreService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-ngAfterContentInit() {
+  ngAfterContentInit() {
     this.ScoreService.getScoreboard().subscribe(
       games => this.dataSource = games
     );
   }
 
-  onDowloadFile(name:string){
+  onDowloadFile(reference:string,roomName:string){
     console.log("DOWLOADING....");
-    this.ScoreService.dowloadJson(name);
+    this.ScoreService.dowloadJson(reference,roomName);
 
   }
 
 
-//   openDialog(dataRoom:game): void {
-//     const dialogRef = this.dialog.open(DialogOverviewRoom, {
-//       width: '250px',
-//       data: {dataRoom},
-//     });
+  openDialog(gameStat:game): void {
+    console.log(gameStat);
+    const dialogRef = this.dialog.open(DialogOverviewRoom, {
+      width: '600px',
+      data: gameStat,
+    });
 
-//     dialogRef.afterClosed().subscribe(result => {
-//       console.log('The dialog was closed');
-//     });
-//   }
-// }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+}
 
-// @Component({
-//   selector: 'dialog-overview-room',
-//   templateUrl: 'dialog-overview-room.html',
-// })
-// export class DialogOverviewRoom {
-//   constructor(
-//     public dialogRef: MatDialogRef<DialogOverviewRoom>,
-//     @Inject(MAT_DIALOG_DATA) public data: game,
-//   ) {}
+@Component({
+  selector: 'dialog-overview-room',
+  templateUrl: './dialog-overview-room.html',
+  styleUrls: ['./scoreboard.component.scss']
+})
+export class DialogOverviewRoom {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewRoom>,
+    @Inject(MAT_DIALOG_DATA) public data: game,
+  ) {}
 
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { InformationComponent } from './information/information.component';
-import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { DialogOverviewRoom, ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { TestsComponent } from './tests/tests.component';
 
 import { MatTableModule } from '@angular/material/table';
@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     InformationComponent,
     HomepageComponent,
     TestsComponent,
+    DialogOverviewRoom,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatSelectModule,
     MatSlideToggleModule,
     NgxPaginationModule,
+    MatDialogModule,
   ],
 })
 export class ComponentsModule {}

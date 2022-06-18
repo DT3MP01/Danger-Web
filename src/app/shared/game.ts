@@ -1,3 +1,5 @@
+import { DocumentReference } from "firebase/firestore";
+
 export class game {
     roomName!: string;
     playerName!: string;
@@ -6,8 +8,9 @@ export class game {
     meters!: number;
     doors!: number;
     windows!: number;
+    reference!:string;
 
-    constructor(roomName:string,playerName: string, extinguishers: number, image: string, meters: number, doors: number, windows: number) {
+    constructor(roomName:string,playerName: string, extinguishers: number, image: string, meters: number, doors: number, windows: number,reference:string) {
         this.roomName = roomName;
         this.playerName = playerName;
         this.extinguishers = extinguishers;
@@ -15,6 +18,7 @@ export class game {
         this.meters = meters;
         this.doors = doors;
         this.windows = windows;
+        this.reference = reference;
     }
 
 }

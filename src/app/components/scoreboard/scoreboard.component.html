@@ -1,49 +1,3 @@
- <!-- <div class="container">
-
-  
-  <h1 class="page-title">Habitaciones</h1>
-  <div class="content">
-
-    <div fxLayout="row wrap" fxLayoutGap="14px grid">
-      <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let num of numberOfGames">
-        <mat-card class="mat-elevation-z4">
-          <mat-card-header>
-            <mat-card-title>Mountains {{num}}</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="https://raw.githubusercontent.com/thisiszoaib/card-view-demo/master/src/assets/images/mountains.jpg">
-          <mat-card-content>
-            <p>
-              The Himalayas is a mountain range in Asia.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
-        </mat-card>
-      </div>
-    </div> 
-
-  </div> 
-
-</div>
-  <mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="pageSizeOptions"
-               (page)="pageEvent = $event;setPageSizeOptions();">
-               aria-label="Select page">
-</mat-paginator>
-
- <div *ngIf="pageEvent" >
-  <h5>Page Change Event Properties</h5>
-  <div>List length: {{pageEvent.length}}</div>
-  <div>Page size: {{pageEvent.pageSize}}</div>
-  <div>Page index: {{pageEvent.pageIndex}}</div>
-  <div>Page Fist: {{pageEvent.pageIndex*pageEvent.pageSize}}</div>
- 
-</div> -->
-
-
 
 <div class="container">
 <h1 class="page-title">Habitaciones</h1>
@@ -53,14 +7,14 @@
         <mat-card-header>
           <mat-card-title>{{data.roomName}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="data:image/png;base64,{{data.image}}">
+        <img mat-card-image src="{{data.image}}">
         <mat-card-content>
           <p>
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button >MORE</button>  <!--(click)="openDialog(data)"-->
-          <button mat-button (click)="onDowloadFile('-N4S1prsP3hMu6RooxA8')">DOWNLOAD </button>
+          <button mat-button (click)="openDialog(data)">MORE</button> 
+          <button mat-button (click)="onDowloadFile(data.reference,data.roomName)">DOWNLOAD </button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -71,4 +25,5 @@
   </div>
 
 </div>
+
 
