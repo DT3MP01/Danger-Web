@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import { collection, DocumentReference, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { collection,doc,  query, where, getDocs, getFirestore, limit } from "firebase/firestore";
 import { environment } from 'src/environments/environment';
 import { getBytes ,getDownloadURL,getStorage,ref} from "firebase/storage";
 
 
 import { getAnalytics } from "firebase/analytics";
-import { game } from '../shared/game';
+import { game ,quizz } from '../shared/game';
 import { Observable, of } from 'rxjs';
 import { gamesData } from '../shared/mock-games';
 
@@ -17,6 +17,7 @@ export class ScoreService {
 
   games: game[] = new Array<game>();
   json: string = "";
+  quizzes: quizz[] = new Array<quizz>();
   
   
   // newGame: game = new game();
@@ -48,20 +49,12 @@ export class ScoreService {
         console.error(error);
       });
 
-    // getBytes(ref(storage, "/GameInfo-Data/NiLI3Bu3kcpuLmqKoZCe-Image")).then((arrayBuffer) => {
-    //     var b64 = Buffer.from(arrayBuffer).toString('base64');
-    //     console.log(b64);
-    //   }).catch((error) => {
-    //     console.error(error);
-    // });
     return of(this.games);
      }
     
 
     dowloadJson(docRef:string,roomName:string)  {
-
       const app = initializeApp(environment.firebaseConfig);
-
       const storage = getStorage(app);
 
       getDownloadURL(ref(storage,docRef)).then((url) => {
@@ -75,5 +68,25 @@ export class ScoreService {
         });
       }
 
-    
+      getQuizzes(): Observable<quizz[]> {
+
+        const app = initializeApp(environment.firebaseConfig);
+      
+        const database = getFirestore(app);
+        const storage = getStorage(app);
+        const key =doc(collection(database, "Quizzes"));
+        console.log(key.id);
+        getDocs(query(collection(database, "Quizzes"),limit(5)/*,where('random',"<=",key.id)*/)).then((snapshot) => {
+          snapshot.forEach((doc) => {
+            console.log( doc.data());
+            const docReference = doc.data();
+            const data = new quizz(docReference.correct, docReference.optionA, docReference.optionB, docReference.optionC, docReference.question,docReference.topic,docReference.explanation);
+            this.quizzes.push(data);
+            });
+          }).catch((error) => {
+            console.error(error);
+          });
+            return of(this.quizzes);
+        }
+
 }

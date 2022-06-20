@@ -1,10 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { game } from '../../shared/game';
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { ScoreService } from 'src/app/services/score.service';
-import { PageEvent } from '@angular/material/paginator';
-import { DocumentReference } from 'firebase/firestore';
+import { debug } from 'console';
 
 
 @Component({
@@ -24,6 +22,7 @@ export class ScoreboardComponent implements OnInit {
   pageSizeOptions: number[] = [10, 20, 30, 50];
 
   dataSource: game[] = new Array<game>();
+  
   pages: number = 1;
 
 
@@ -38,6 +37,8 @@ export class ScoreboardComponent implements OnInit {
     this.ScoreService.getScoreboard().subscribe(
       games => this.dataSource = games
     );
+
+
   }
 
   onDowloadFile(reference:string,roomName:string){

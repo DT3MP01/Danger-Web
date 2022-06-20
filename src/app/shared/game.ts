@@ -22,3 +22,20 @@ export class game {
     }
 
 }
+
+export class quizz {
+    correct!: number;
+    question!: string;
+    options!: string[];
+    topic!: string;
+    explanation!: string;
+    constructor(correct: number, optionA: string, optionB: string, optionC: string, question: string, topic: string,explanation:string) {
+        this.correct = correct;
+        this.options = [optionA, optionB, optionC];
+        this.question = question;
+        this.topic = topic;
+        this.explanation = explanation;
+    }
+
+
+}

@@ -30,9 +30,9 @@
       <li class="tests" *ngFor="let item of tests">
         <div class="question">{{ item.question }}</div>
         <ul>
-          <li *ngFor="let option of item.options">
-            <div [ngClass]="{ red: showAnswer && option.isAnswer }">
-              {{ option.text }}
+          <li *ngFor="let option of item.options; let i = index">
+            <div [ngClass]="{ red: showAnswer && i+1== item.correct }">
+              {{ option }}
             </div>
           </li>
         </ul>
