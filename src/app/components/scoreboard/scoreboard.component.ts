@@ -31,13 +31,18 @@ export class ScoreboardComponent implements OnInit {
   constructor(private ScoreService: ScoreService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.ScoreService.getScoreboard().subscribe((data: game[]) => {
+      this.dataSource = data;
+      console.log(this.dataSource);
+    }
+    );
+  }
+  ngOnDestroy(): void {
+    console.log("DESTROYING....");
   }
 
   ngAfterContentInit() {
-    this.ScoreService.getScoreboard().subscribe(
-      games => this.dataSource = games
-    );
-
+    
 
   }
 
