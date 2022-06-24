@@ -25,7 +25,8 @@ export class TestsComponent implements OnInit {
   public tests:quizz[] = new Array<quizz>();
   constructor(private ScoreService: ScoreService) {}
   public number:number = 0;
-  public isDisabled: boolean[] = [false,false,false];
+  public questionSolved:boolean=false;
+  public isDisabled: number[] = [0,0,0];
   ngOnInit(): void {}
   ngAfterContentInit() {
     this.ScoreService.getQuizzes().subscribe((quizzes) => { 
@@ -35,14 +36,23 @@ export class TestsComponent implements OnInit {
   }
   public next(){
     this.number++;
+    this.isDisabled = [0,0,0];
+    this.questionSolved=false;
     console.log(this.number);
   }
   public submit(){
     console.log(this.number);
   }
   public select(index:number){
-    this.isDisabled[index] = true;
+    if(index+1==this.tests[this.number].correct ){
+      this.isDisabled[index] = 1;
+      this.questionSolved=true;
+    }
+    else{
+      this.isDisabled[index] = 2;
+    }
     console.log(index+1==this.tests[this.number].correct);
+    
   }
 
 }
