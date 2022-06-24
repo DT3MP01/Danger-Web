@@ -45,21 +45,17 @@
         <hr />
       </li>
     </ol> -->
-    <div class="container mb-5">
+
+
+    <!-- <div class="container mb-5">
   <div class="row">
      <div class="col-12">
         <p class="tests-title">{{number+1}}. {{tests[number].question}}</p>
         <div>
-           <input type="radio" name="box"  id="one"> <input type="radio" name="box" id="two"> <input type="radio" name="box" id="three"> 
-           <label for="one" class="box first">
-              <div class="course"> <span class="circle"></span> <span class="subject"> {{tests[number].options[0]}} </span> </div>
+           <label for="one" [ngClass]="{ green: showAnswer }" (click)="select(i)" class="box first" *ngFor="let quizz of tests[number].options; let i = index">
+              <div class="course"> <span class="circle"></span> <span class="subject">{{quizz}} </span> </div>
            </label>
-           <label for="two" class="box second">
-              <div class="course"> <span class="circle"></span> <span class="subject"> {{tests[number].options[1]}} </span> </div>
-           </label>
-           <label for="three" class="box third">
-              <div class="course"> <span class="circle"></span> <span class="subject"> {{tests[number].options[2]}} </span> </div>
-           </label>
+           
         </div>
      </div>
      <div class="col-12" >
@@ -70,5 +66,44 @@
 
   </mat-drawer-content>
 </mat-drawer-container>
+</div> -->
+
+
+
+
+<div class="options" *ngFor="let option of currentQuestion.options; index as i">
+		<mat-radio-button (change)="setSelected(i)" [class.is-correct]="isCorrectOption"
+			[class.is-incorrect]="isIncorrectOption">
+
+			<mat-radio-label>
+				{{ i + 1 }}. {{ option.text }}
+
+				<ng-container *ngIf="option.selected">
+					<i class="material-icons feedback-icon" *ngIf="option.correct && isCorrectAnswerSelected">done</i>
+					<i class="material-icons feedback-icon" *ngIf="!option.correct">clear</i>
+				</ng-container>
+			</mat-radio-label>
+		</mat-radio-button>
+
+		<ng-container *ngIf="option.selected">
+			<div *ngIf="option.correct && isCorrectAnswerSelected" class="messages">
+				<span>
+          <i class="material-icons sentiment-icon">sentiment_very_satisfied</i>
+          <span class="message correct-message" i18n>You&apos;re right! {{ correctMessage }}</span>
+				</span>
+			</div>
+			<div *ngIf="!option.correct" class="messages">
+				<span>
+          <i class="material-icons sentiment-icon">sentiment_very_dissatisfied</i>
+          <span class="message wrong-message" i18n>That&apos;s wrong. {{ correctMessage }}</span>
+				</span>
+			</div>
+			<!-- TODO: get this working! RESOLVE THIS TODO -->
+			<div *ngFor="let previousAnswer of previousAnswers; index as j" class="previous-answer-text">
+				<span *ngIf="previousAnswers[j].length === 1">
+          &ldquo;{{ previousAnswer }}&rdquo; was selected in your previous quiz.
+        </span>
+			</div>
+		</ng-container>
 </div>
 
