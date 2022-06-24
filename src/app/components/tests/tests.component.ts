@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
+import { Console } from 'console';
 import { ScoreService } from 'src/app/services/score.service';
 import { quizz } from '../../shared/game';
 @Component({
@@ -11,6 +12,37 @@ export class TestsComponent implements OnInit {
   showAnswer = false;
   selected = 'Nivel 1';
   disableSelect = new UntypedFormControl(false);
+  headingCssCorrect = {
+    'color':'red', 
+    'font-weight':'bold'
+  };
+  headingCssWrong = {
+    'color':'red', 
+    'font-weight':'bold'
+  };
+
+
+  public tests:quizz[] = new Array<quizz>();
+  constructor(private ScoreService: ScoreService) {}
+  public number:number = 0;
+  isDisabled = false;
+  ngOnInit(): void {}
+  ngAfterContentInit() {
+    this.ScoreService.getQuizzes().subscribe((quizzes) => { 
+      this.tests = quizzes;
+    }
+    );
+  }
+  public next(){
+    this.number++;
+    console.log(this.number);
+  }
+  public submit(){
+    console.log(this.number);
+  }
+
+
+}
 
   // public tests: any = [
   //   {
@@ -99,20 +131,3 @@ export class TestsComponent implements OnInit {
   //       '4. No dirigir la salida del agente extintor hacia las personas.',
   //   },
   // ];
-  public tests:quizz[] = new Array<quizz>();
-  constructor(private ScoreService: ScoreService) {}
-
-  ngOnInit(): void {}
-  ngAfterContentInit() {
-
-   
-
-    this.ScoreService.getQuizzes().subscribe((quizzes) => { 
-      this.tests = quizzes;
-    }
-    );
-  }
-
-
-
-}

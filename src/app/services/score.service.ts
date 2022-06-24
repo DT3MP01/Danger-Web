@@ -15,17 +15,14 @@ import { gamesData } from '../shared/mock-games';
 })
 export class ScoreService {
 
-  games: game[] = new Array<game>();
   json: string = "";
-  quizzes: quizz[] = new Array<quizz>();
-  
   
   // newGame: game = new game();
 
   constructor() { }
 
   getScoreboard(): Observable<game[]> {
-
+    const games = new Array<game>()
     const app = initializeApp(environment.firebaseConfig);
     
     const database = getFirestore(app);
@@ -39,7 +36,8 @@ export class ScoreService {
         const docReference = doc.data();
         console.log(url);
         const data = new game(docReference.RoomName, docReference.PlayerName, docReference.Extinguishers, url, docReference.Meters, docReference.Doors, docReference.Windows,docReference.Reference);
-        this.games.push(data);
+        games.push(data);
+
       }).catch((error) => {
           console.error(error);
         });
@@ -49,7 +47,7 @@ export class ScoreService {
         console.error(error);
       });
 
-    return of(this.games);
+    return of(games);
      }
     
 
@@ -69,9 +67,8 @@ export class ScoreService {
       }
 
       getQuizzes(): Observable<quizz[]> {
-
+        const quizzes = new Array<quizz>();
         const app = initializeApp(environment.firebaseConfig);
-      
         const database = getFirestore(app);
         const storage = getStorage(app);
         const key =doc(collection(database, "Quizzes"));
@@ -81,12 +78,12 @@ export class ScoreService {
             console.log( doc.data());
             const docReference = doc.data();
             const data = new quizz(docReference.correct, docReference.optionA, docReference.optionB, docReference.optionC, docReference.question,docReference.topic,docReference.explanation);
-            this.quizzes.push(data);
+            quizzes.push(data);
             });
           }).catch((error) => {
             console.error(error);
           });
-            return of(this.quizzes);
+            return of(quizzes);
         }
 
 }
