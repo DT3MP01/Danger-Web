@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { game } from '../../shared/game';
-import { signInAnonymously } from 'firebase/auth';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 
 @Component({
@@ -11,13 +10,22 @@ import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private fireBaseAuthS:FirebaseAuthService) { }
+  constructor(private fireBaseAuthS:FirebaseAuthService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
   // this.fireBaseAuthS.login('albertoalvaza@gmail.com','123456');
   }
   ngAfterContentInit() {
     //this.fireBaseAuthS.login('albertoalvaza@gmail.com','123456');
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 
@@ -27,11 +35,8 @@ export class HeaderComponent implements OnInit {
   templateUrl: './login.html',
   styleUrls: ['./header.component.scss']
 })
-export class AuthComponent {
-  constructor(
-    public dialogRef: MatDialogRef<AuthComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: game,
-  ) {}
+export class LoginComponent {
+  constructor(public dialogRef: MatDialogRef<LoginComponent>) {}
 
   onNoClick(): void {
     this.dialogRef.close();

@@ -31,9 +31,15 @@
           <a [routerLink]="['/tests']" routerLinkActive="active">Tests</a>
         </div>
       </div>
+      <!-- <div *ngIf="data.isTrue">
+        <mat-icon>account_circle</mat-icon>TasDentro
+      </div>   -->
 
-      <div class="header_login">
+      <div class="header_login" (click)="openDialog()">
         <mat-icon>account_circle</mat-icon> Sign in
+      </div>
+      <div class="header_login" (click)="openDialog()">
+        <mat-icon>account_circle</mat-icon> Log in
       </div>
     </div>
   </mat-toolbar-row>

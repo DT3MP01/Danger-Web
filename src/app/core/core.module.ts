@@ -18,7 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     CommonModule,
     RouterModule,
     MatDividerModule,
-    MatIconModule, 
+    MatIconModule,
     MatToolbarModule,
   ],
   exports: [
