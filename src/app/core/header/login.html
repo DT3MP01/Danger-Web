@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -11,14 +11,14 @@
               
 							<span class="input-group-text"><i class="fas fa-users"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="username">
+						<input type="text" class="form-control" placeholder="username" [(ngModel)]="usuario.email">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password">
+						<input type="password" class="form-control" placeholder="password"[(ngModel)]="usuario.password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
@@ -38,4 +38,25 @@
 			</div>
 		</div>
 	</div>
+</div> -->
+
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+      <b> INGRESO</b>
+    </div>
+    <div class="card-body p-4">
+      <label style="float: left;">Email</label>
+      <input class="form-control m-2" type="email" placeholder="ingrese su email" [(ngModel)]="usuario.email">
+
+      <label style="float: left;">Password</label>
+      <input class="form-control m-2" type="password" placeholder="ingrese su password" [(ngModel)]="usuario.password">
+
+      <button class="btn btn-primary btn-block m-2" (click)="Login()">Login</button>
+
+      <label>Aun no tienes cuenta? <a routerLink="/register">Registrarse</a></label>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block m-2" (click)="CheckLogin()">usuarioLogeado</button>
+  <button class="btn btn-primary btn-block m-2" (click)="Logout()">Logout</button>
 </div>

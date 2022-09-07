@@ -1,31 +1,40 @@
 <h1 mat-dialog-title>{{data.roomName}}</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
+<!-- <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
+ -->
 
-<mat-grid-list cols="2" >
-  <mat-grid-tile >
-    <p>
-      {{data.roomName}}
-    </p>
-    <p>
-      BY :{{data.playerName}}
-    </p>
-    <p>
-      Extinguishers: {{data.extinguishers}}
-    </p>
-    <p>
-      Meters: {{data.meters}}
-    </p>
-    <p>
-      Doors: {{data.doors}}
-    </p>
-    <p>
-      Windows: {{data.windows}}
-    </p>
-  </mat-grid-tile>
-  <mat-grid-tile><img mat-card-image src="{{data.image}}"></mat-grid-tile>
-
-</mat-grid-list>
-
+  <div class="row">
+    <div class="col-md-auto">
+      <ul>
+        <li>
+          <span>Room Name:</span>
+          <span>{{data.roomName}}</span>
+        </li>
+        <li>
+          <span>By:</span>
+          <span>{{data.playerName}}</span>
+        </li>
+        <li>
+          <span>Extinguishers:</span>
+          <span>{{data.extinguishers}}</span>
+        </li>
+        <li>
+          <span>Meters:</span>
+          <span>{{data.meters}}</span>
+        </li>
+        <li>
+          <span>Doors:</span>
+          <span>{{data.doors}}</span>
+        </li>
+        <li>
+          <span>Windows:</span>
+          <span>{{data.windows}}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm">
+      <img mat-card-image src="{{data.image}}">
+    </div>
+  </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()" >Back</button>
 </div>

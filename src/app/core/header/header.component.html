@@ -31,9 +31,9 @@
           <a [routerLink]="['/tests']" routerLinkActive="active">Tests</a>
         </div>
       </div>
-      <!-- <div *ngIf="data.isTrue">
-        <mat-icon>account_circle</mat-icon>TasDentro
-      </div>   -->
+      <div *ngIf="userLogged|async as user">
+        <mat-icon>account_circle</mat-icon>{{user.email}}
+      </div>  
 
       <div class="header_login" (click)="openDialog()">
         <mat-icon>account_circle</mat-icon> Sign in

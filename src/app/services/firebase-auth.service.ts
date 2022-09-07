@@ -1,6 +1,7 @@
 import { DebugElement, Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword,signInWithEmailAndPassword} from 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,31 +9,39 @@ import { environment } from 'src/environments/environment';
 })
 export class FirebaseAuthService {
 
-  app: any;
-  auth: any;
-  constructor() {
-    this.app = initializeApp(environment.firebaseConfig);
-    this.auth = getAuth(this.app);
+  constructor(private angularFireAuth: AngularFireAuth) {
   }
   
 
-  login(email: string, password: string) {
+  async login(email: string, password: string) {
     console.log(email, password);
-      signInWithEmailAndPassword(this.auth, email, password).then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-      }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-      });
+    try{
+        return await this.angularFireAuth.signInWithEmailAndPassword(email, password);
+
+    }
+    catch(error){
+      console.log("error Login" ,error);
+      return null;
+    }
   } 
-  logout() {
-      this.auth.signOut();
+  async register(email: string, password: string) {
+    console.log(email, password);
+    try{
+        return await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
+    }
+    catch(error){
+      console.log("error Register" ,error);
+      return null;
+    }
+  }
+  checkLogin(){
+    return this.angularFireAuth.authState;
+  }
+  logout(){
+    this.angularFireAuth.signOut();
   }
 
+  
 }
 
 

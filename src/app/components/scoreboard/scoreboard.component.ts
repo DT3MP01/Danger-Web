@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { game } from '../../shared/game';
 import { ScoreService } from 'src/app/services/score.service';
-import { debug } from 'console';
+import { Console, debug } from 'console';
 
 
 @Component({
@@ -13,8 +13,6 @@ import { debug } from 'console';
 
 export class ScoreboardComponent implements OnInit {
   
-
-
   displayedColumns: string[] = ['username', 'scans', 'time', 'meters'];
 
   length = 20;
@@ -47,7 +45,6 @@ export class ScoreboardComponent implements OnInit {
   }
 
   onDowloadFile(reference:string,roomName:string){
-    console.log("DOWLOADING....");
     this.ScoreService.dowloadJson(reference,roomName);
 
   }

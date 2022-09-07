@@ -9,9 +9,9 @@ import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  
   constructor(private fireBaseAuthS:FirebaseAuthService,public dialog: MatDialog) { }
-
+  userLogged= this.fireBaseAuthS.checkLogin();
   ngOnInit(): void {
   // this.fireBaseAuthS.login('albertoalvaza@gmail.com','123456');
   }
@@ -36,9 +36,37 @@ export class HeaderComponent implements OnInit {
   styleUrls: ['./header.component.scss']
 })
 export class LoginComponent {
-  constructor(public dialogRef: MatDialogRef<LoginComponent>) {}
+  constructor(private fireBaseAuthS:FirebaseAuthService,public dialogRef: MatDialogRef<LoginComponent>) {}
 
+  usuario={
+    email:'',
+    password:'',
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }
+  Login(){
+    this.fireBaseAuthS.login(this.usuario.email,this.usuario.password).then(()=>{
+      console.log('Usuario logueado');
+    }).catch(()=>{
+      console.log('Usuario no logueado');
+    }
+    );
+   ;
+  }
+  Register(){
+    this.fireBaseAuthS.register(this.usuario.email,this.usuario.password).then(()=>{
+      console.log('Usuario registrado');
+    });
+    console.log(this.usuario);
+  }
+  CheckLogin(){
+    this.fireBaseAuthS.checkLogin().subscribe(res=>{
+      console.log(res?.email);
+  });
+  }
+  Logout(){
+    this.fireBaseAuthS.logout();
+  }
+
 }

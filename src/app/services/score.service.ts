@@ -57,10 +57,19 @@ export class ScoreService {
 
       getDownloadURL(ref(storage,docRef)).then((url) => {
         const link = document.createElement("a");
+        console.log(roomName);
+        link.download="json.json";
         link.href = url;
-        link.download = roomName;
         link.click();
         link.remove();
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = (event) => {
+          const blob = xhr.response;
+        };
+        xhr.open('GET', url);
+        xhr.send();
+
       }).catch((error) => {
           console.error(error);
         });
