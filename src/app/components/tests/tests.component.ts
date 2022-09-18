@@ -25,6 +25,10 @@ export class TestsComponent implements OnInit {
   public tests:quizz[] = new Array<quizz>();
   constructor(private ScoreService: ScoreService) {}
   public number:number = 0;
+  public correctAnswers:number=0;
+  public maxQuestions:number=10;
+  public questionLeft:boolean=true; 
+  public firstSelect: boolean=true;
   public questionSolved:boolean=false;
   public isDisabled: number[] = [0,0,0];
   ngOnInit(): void {}
@@ -35,10 +39,14 @@ export class TestsComponent implements OnInit {
     );
   }
   public next(){
-    this.number++;
-    this.isDisabled = [0,0,0];
-    this.questionSolved=false;
-    console.log(this.number);
+      this.number++;
+      this.firstSelect=true;
+      this.isDisabled = [0,0,0];
+      this.questionSolved=false;
+      if(this.number == Math.min(this.maxQuestions,this.tests.length)){
+        this.questionLeft = false;
+      }
+
   }
   public submit(){
     console.log(this.number);
@@ -47,9 +55,16 @@ export class TestsComponent implements OnInit {
     if(index+1==this.tests[this.number].correct ){
       this.isDisabled[index] = 1;
       this.questionSolved=true;
+      if(this.firstSelect){
+        this.firstSelect = false;
+        this.correctAnswers++;
+      }
     }
     else{
       this.isDisabled[index] = 2;
+      if(this.firstSelect){
+        this.firstSelect = false;
+      }
     }
     console.log(index+1==this.tests[this.number].correct);
     
